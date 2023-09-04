@@ -14,10 +14,10 @@ public class HotelManagementRepository {
     HashMap<String,Booking>bookings=new HashMap<>();
     List<User>users=new ArrayList<>();
     public String addHotel(Hotel hotel) {
-        if(hotel.getHotelName()==null) return "an empty a FAILURE";
+        if(hotel.getHotelName()==null) return "FAILURE";
         if(hotels.containsKey(hotel.getHotelName())) return "FAILURE";
         hotels.put(hotel.getHotelName(),hotel);
-        return "'SUCCESS";
+        return "SUCCESS";
     }
 
     public Integer addUser(User user) {
@@ -27,11 +27,12 @@ public class HotelManagementRepository {
 
     public String getHotelWithMostFacilities() {
         int cnt=0; Hotel hotel=null;
+//        if(hotels.size()==0) return "";
         for (Hotel hot:hotels.values()){
             if(hot.getFacilities().size()>cnt){
                 hotel=hot;
                 cnt=hot.getFacilities().size();
-            } else if (hot.getFacilities().size()==cnt) {
+            } else if (hot.getFacilities().size()==cnt && hotel!=null) {
                 if(hot.getHotelName().compareTo(hotel.getHotelName())<0){
                     hotel=hot;
                 }
